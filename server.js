@@ -10,25 +10,27 @@ const cors = require('cors')  // allows/disallows cross-site communication
 const morgan = require('morgan') // logs requests
 const handlebars = require('handlebars');
 
-// db Connection w/ Heroku
- const db = require('knex')({
-   client: 'pg',
-   connection: {
-     connectionString: process.env.REMOTE_DB_URL,
-     ssl: true
-   }
- });
-
-// db Connection w/ localhost
-/*var db = require('knex')({
-  client: 'pg',
-  connection: {
-    host : 'sql-exercises.20bits.com',
-    user : 'student',
-    password : 'sqlrocks123!',
-    database : 'sql_exercises'
-  }
-});*/
+if (process.env.REMOTE_DB_URL) {
+  // db Connection w/ Heroku
+  const db = require('knex')({
+    client: 'pg',
+    connection: {
+      connectionString: process.env.REMOTE_DB_URL,
+      ssl: true
+    }
+  });
+} else {
+  // db Connection w/ localhost
+  var db = require('knex')({
+    client: 'pg',
+    connection: {
+      host: 'sql-exercises.20bits.com',
+      user: 'student',
+      password: 'sqlrocks123!',
+      database: 'sql_exercises'
+    }
+  });
+}
 
 // Controllers - aka, the db queries
 const main = require('./controllers/main')
@@ -37,10 +39,10 @@ const main = require('./controllers/main')
 const app = express()
 
 // App Middleware
-const whitelist = ['http://localhost:3001','http://localhost:3000']
+const whitelist = ['http://localhost:3001', 'http://localhost:3000']
 const corsOptions = {
   origin: function (origin, callback) {
-      console.log(origin)
+    console.log(origin)
     if (whitelist.indexOf(origin) !== -1 || !origin) {
       callback(null, true)
     } else {
