@@ -1,12 +1,10 @@
 {
-  "name": "instructor-tools-api",
+  "name": "node-express-postgres",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "migrate": "postgrator --config postgrator-config.js",
-    "heroku-postbuild": "npm install --production"
+    "start": "node server.js"
   },
   "engines": {
     "node": "12.18.0",
