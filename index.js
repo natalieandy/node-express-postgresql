@@ -95,46 +95,68 @@ router.get('/invoices3', async (request, response) => {
   console.log(invoices3);
   response.render('invoices3', { layout: 'index', invoices3: invoices3, show: true });
 });
-/*
 
+// SELECT * FROM invoices ORDER BY total LIMIT 10;
+router.get('/invoices4', async (request, response) => {
+  let invoices4 = await db.select('*').from('invoices').orderBy('total').limit(10);
+  console.log(invoices4);
+  response.render('invoices4', { layout: 'index', invoices4: invoices4, show: true });
+});
 
--- Every invoice with a total greater than 10
-SELECT * FROM invoices WHERE total > 10;
+// SELECT * FROM invoices ORDER BY total DESC LIMIT 10;
+router.get('/invoices5', async (request, response) => {
+  let invoices5 = await db.select('*').from('invoices').orderBy('total', 'DESC').limit(10);
+  console.log(invoices5);
+  response.render('invoices5', { layout: 'index', invoices5: invoices5, show: true });
+});
 
--- The 10 least expensive invoices
--- Remember: ORDER BY orders from lowest-to-highest by default
-SELECT * FROM invoices ORDER BY total LIMIT 10;
+// SELECT * FROM invoices ORDER BY invoices DESC LIMIT 15;
+router.get('/invoices6', async (request, response) => {
+  let invoices6 = await db.select('*').from('invoices').orderBy('invoices', 'DESC').limit(15);
+  console.log(invoices6);
+  response.render('invoices6', { layout: 'index', invoices6: invoices6, show: true });
+});
 
--- The 10 most expensive invoices
-SELECT * FROM invoices ORDER BY total DESC LIMIT 10;
+// SELECT * FROM invoices ORDER BY invoices ASC LIMIT 15;
+router.get('/invoices7', async (request, response) => {
+  let invoices7 = await db.select('*').from('invoices').orderBy('invoices').limit(15);
+  console.log(invoices7);
+  response.render('invoices7', { layout: 'index', invoices7: invoices7, show: true });
+});
 
--- The 15 most recent invoices
-SELECT * FROM invoices ORDER BY invoices DESC LIMIT 15;
-
--- The 15 oldest invoices
-SELECT * FROM invoices ORDER BY invoices ASC LIMIT 15;
-
--- The 10 most expensive invoices from the US
-SELECT * FROM invoices WHERE billing_country = 'USA' ORDER BY total DESC LIMIT 10;
-
--- The 10 least expensive invoices from the US
-SELECT * FROM invoices WHERE billing_country = 'USA' ORDER BY total LIMIT 10;
-
--- The 10 most expensive invoices from outside the US
--- Hint: If "=" means equal, use "!=" to mean "not equal"
-SELECT * FROM invoices WHERE billing_country != 'USA' ORDER BY total DESC LIMIT 10;
-
--- Every invoice from Chicago, IL
-SELECT * FROM invoices WHERE billing_city = 'Chicago' AND billing_state = 'IL' AND billing_country='USA';
-
--- A list of all the invoices worth more than $5.00 from Chicago, IL
-SELECT * FROM invoices WHERE billing_city = 'Chicago' AND billing_state = 'IL' AND billing_country='USA' AND total > 5.00;
-*/
-
+// SELECT * FROM invoices WHERE billing_country = 'USA' ORDER BY total DESC LIMIT 10;
 router.get('/invoices8', async (request, response) => {
-  let invoices = await db.select('*').from('invoices').where('billing_country', 'USA').orderBy('total', 'DESC').limit(10);
-  console.log(invoices);
-  response.render('invoices8', { layout: 'index', invoices: invoices, show: true });
+  let invoices8 = await db.select('*').from('invoices').where('billing_country', 'USA').orderBy('total', 'DESC').limit(10);
+  console.log(invoices8);
+  response.render('invoices8', { layout: 'index', invoices8: invoices8, show: true });
+})
+
+// SELECT * FROM invoices WHERE billing_country = 'USA' ORDER BY total LIMIT 10;
+router.get('/invoices9', async (request, response) => {
+  let invoices9 = await db.select('*').from('invoices').where('billing_country', 'USA').orderBy('total').limit(10);
+  console.log(invoices9);
+  response.render('invoices9', { layout: 'index', invoices9: invoices9, show: true });
+})
+
+// SELECT * FROM invoices WHERE billing_country != 'USA' ORDER BY total DESC LIMIT 10;
+router.get('/invoices10', async (request, response) => {
+  let invoices10 = await db.select('*').from('invoices').where('billing_country', '<>', 'USA').orderBy('total', 'DESC').limit(10);
+  console.log(invoices10);
+  response.render('invoices10', { layout: 'index', invoices10: invoices10, show: true });
+})
+
+// SELECT * FROM invoices WHERE billing_city = 'Chicago' AND billing_state = 'IL' AND billing_country='USA';
+router.get('/invoices11', async (request, response) => {
+  let invoices11 = await db.select('*').from('invoices').where('billing_city', '=', 'Chicago').andWhere('billing_state', '=', 'IL').andWhere('billing_country', '=', 'USA');
+  console.log(invoices11);
+  response.render('invoices11', { layout: 'index', invoices11: invoices11, show: true });
+})
+
+// SELECT * FROM invoices WHERE billing_city = 'Chicago' AND billing_state = 'IL' AND billing_country='USA' AND total > 5.00;
+router.get('/invoices12', async (request, response) => {
+  let invoices12 = await db.select('*').from('invoices').where('billing_city', '=', 'Chicago').andWhere('billing_state', '=', 'IL').andWhere('billing_country', '=', 'USA').andWhere('total', '>', '5.00');
+  console.log(invoices12);
+  response.render('invoices12', { layout: 'index', invoices12: invoices12, show: true });
 })
 
 app.listen(port, () => console.log(`App listening to port ${port}`));

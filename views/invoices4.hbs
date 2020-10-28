@@ -1,0 +1,9 @@
+<h2>The 10 least expensive invoices</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices4}}
+      <li class={{this.id}}> ID {{this.id}}</li>
+      <li class={{this.id}}>{{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

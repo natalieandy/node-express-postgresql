@@ -1,0 +1,9 @@
+<h2>Every invoice from Chicago, IL</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices11}}
+      <li class={{this.id}}>{{this.billing_city}}</li>
+      <li class={{this.id}}>Total {{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

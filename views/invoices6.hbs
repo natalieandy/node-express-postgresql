@@ -1,0 +1,9 @@
+<h2>The 15 most recent invoices</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices6}}
+      <li class={{this.id}}> ID {{this.id}}</li>
+      <li class={{this.id}}>{{this.invoice_date}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

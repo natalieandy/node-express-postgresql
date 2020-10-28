@@ -1,0 +1,9 @@
+<h2>A list of all the invoices worth more than $5.00 from Chicago, IL</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices12}}
+      <li class={{this.id}}>{{this.billing_city}}</li>
+      <li class={{this.id}}>Total {{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

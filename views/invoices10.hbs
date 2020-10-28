@@ -1,0 +1,9 @@
+<h2>The 10 most expensive invoices from outside the US</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices10}}
+      <li class={{this.id}}>{{this.billing_city}}
+      <li class={{this.id}}>Total {{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>
