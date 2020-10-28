@@ -1,0 +1,9 @@
+
+<h2>Albums List</h2>
+<ul>
+  {{#if show}}
+    {{#each albums}}
+      <li class={{this.id}}>{{this.title}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

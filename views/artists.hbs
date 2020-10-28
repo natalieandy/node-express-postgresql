@@ -1,0 +1,9 @@
+
+<h2>Artists List</h2>
+<ul>
+  {{#if show}}
+    {{#each artists}}
+      <li class={{this.id}}>{{this.name}}</li>
+    {{/each}}
+  {{/if}}
+</ul>
