@@ -1,0 +1,8 @@
+<h2>Every album ordered by album title in ascending order (A-Z)</h2>
+<ul>
+  {{#if show}}
+    {{#each albums3}}
+      <li class={{this.id}}>{{this.title}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

@@ -1,0 +1,9 @@
+<h2>Every invoice</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices}}
+      <li class={{this.id}}> ID {{this.id}}</li>
+      <li class={{this.id}}>{{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

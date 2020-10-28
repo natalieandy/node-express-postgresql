@@ -1,0 +1,8 @@
+<h2>Every album whose title starts with A in alphabetical order</h2>
+<ul>
+  {{#if show}}
+    {{#each albums5}}
+      <li class={{this.id}}>{{this.title}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

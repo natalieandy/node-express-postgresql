@@ -1,0 +1,8 @@
+<h2>Every album title (and only the title)</h2>
+<ul>
+  {{#if show}}
+    {{#each albums2}}
+      <li class={{this.id}}>{{this.title}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

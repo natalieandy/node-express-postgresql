@@ -1,0 +1,9 @@
+<h2>Every invoice with a total greater than 10</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices3}}
+      <li class={{this.id}}> ID {{this.id}}</li>
+      <li class={{this.id}}>{{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>
