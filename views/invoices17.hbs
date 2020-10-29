@@ -1,0 +1,9 @@
+<h2>The state in the US with the most invoices</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices17}}
+      <li class={{this.id}}>{{this.billing_state}}</li>
+      <li class={{this.id}}>Total {{this.count(*)}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

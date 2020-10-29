@@ -1,0 +1,9 @@
+<h2>A list of the top 5 countries by gross/total invoice size</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices23}}
+      <li class={{this.id}}>{{this.billing_country}}</li>
+      <li class={{this.id}}>{{this.SUM(total)}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

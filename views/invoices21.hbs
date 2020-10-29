@@ -1,0 +1,9 @@
+<h2>The count, total, and average of invoice totals, grouped by state, ordered by average invoice total from highest-to-lowest</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices21}}
+      <li class={{this.id}}>{{this.billing_state}}</li>
+      <li class={{this.id}}>{{this.AVG(total)}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

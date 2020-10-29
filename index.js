@@ -159,4 +159,88 @@ router.get('/invoices12', async (request, response) => {
   response.render('invoices12', { layout: 'index', invoices12: invoices12, show: true });
 })
 
+// SELECT billing_address FROM invoices WHERE billing_city = 'Mountain View' AND billing_state = 'CA' AND billing_country='USA' ORDER BY total DESC LIMIT 5;
+router.get('/invoices13', async (request, response) => {
+  let invoices13 = await db.select('billing_address').from('invoices').where('billing_city', '=', 'Mountain View').andWhere('billing_state', '=', 'IL').andWhere('billing_country', '=', 'USA').orderBy('total', 'DESC').limit(10);
+  console.log(invoices13);
+  response.render('invoices13', { layout: 'index', invoices13: invoices13, show: true });
+})
+
+// SELECT * FROM invoices WHERE invoice_date < '2010-01-01' ORDER BY total DESC LIMIT 10;
+router.get('/invoices14', async (request, response) => {
+  let invoices14 = await db.select('*').from('invoices').where('invoice_date', '<', '2010-01-01').orderBy('total', 'DESC').limit(10);
+  console.log(invoices14);
+  response.render('invoices14', { layout: 'index', invoices14: invoices14, show: true });
+})
+
+// SELECT COUNT(*) FROM invoices WHERE billing_city = 'Chicago' AND billing_state = 'IL' AND billing_country = 'USA';
+router.get('/invoices15', async (request, response) => {
+  let invoices15 = await db.count('*').from('invoices').where('billing_city', '=', 'Chicago').andWhere('billing_state', '=', 'IL').andWhere('billing_country', '=', 'USA');
+  console.log(invoices15);
+  response.render('invoices15', { layout: 'index', invoices15: invoices15, show: true });
+})
+
+// SELECT billing_state, COUNT(*) FROM invoices WHERE billing_country = 'USA' GROUP BY billing_state;
+router.get('/invoices16', async (request, response) => {
+  let invoices16 = await db.select('billing_state').count('*').from('invoices').where('billing_country', '=', 'USA').groupBy('billing_state');
+  console.log(invoices16);
+  response.render('invoices16', { layout: 'index', invoices16: invoices16, show: true });
+})
+
+// SELECT billing_state, COUNT(*) FROM invoices WHERE billing_country = 'USA' GROUP BY billing_state ORDER BY COUNT(*) DESC LIMIT 1;
+router.get('/invoices17', async (request, response) => {
+  let invoices17 = await db.select('billing_state').count('*').from('invoices').where('billing_country', '=', 'USA').groupBy('billing_state').orderBy('COUNT(*)', 'DESC').limit(1);
+  console.log(invoices17);
+  response.render('invoices17', { layout: 'index', invoices17: invoices17, show: true });
+})
+
+// SELECT billing_state, SUM(total) FROM invoices WHERE billing_country = 'USA' AND billing_state = 'CA' GROUP BY billing_state;
+router.get('/invoices18', async (request, response) => {
+  let invoices18 = await db.select('billing_state').sum('total').from('invoices').where('billing_country', '=', 'USA').andWhere('billing_state', '=', 'CA').groupBy('billing_state');
+  console.log(invoices18);
+  response.render('invoices18', { layout: 'index', invoices18: invoices18, show: true });
+})
+
+// SELECT billing_state, COUNT(*), SUM(total) FROM invoices WHERE billing_country = 'USA' AND billing_state = 'CA' GROUP BY billing_state;
+router.get('/invoices19', async (request, response) => {
+  let invoices19 = await db.select('billing_state').count('*').sum('total').from('invoices').where('billing_country', '=', 'USA').andWhere('billing_state', '=', 'CA').groupBy('billing_state');
+  console.log(invoices19);
+  response.render('invoices19', { layout: 'index', invoices19: invoices19, show: true });
+})
+
+// SELECT billing_state, COUNT(*), SUM(total), AVG(total) FROM invoices WHERE billing_country = 'USA' AND billing_state = 'CA' GROUP BY billing_state;
+router.get('/invoices20', async (request, response) => {
+  let invoices20 = await db.select('billing_state').count('*').sum('total').avg('total').from('invoices').where('billing_country', '=', 'USA').andWhere('billing_state', '=', 'CA').groupBy('billing_state');
+  console.log(invoices20);
+  response.render('invoices20', { layout: 'index', invoices20: invoices20, show: true });
+})
+
+// SELECT billing_state, COUNT(*), SUM(total), AVG(total) FROM invoices WHERE billing_country = 'USA' GROUP BY billing_state ORDER BY AVG(total) DESC;
+router.get('/invoices21', async (request, response) => {
+  let invoices21 = await db.select('billing_state').count('*').sum('total').avg('total').from('invoices').where('billing_country', '=', 'USA').groupBy('billing_state').orderBy('AVG(total)', 'DESC');
+  console.log(invoices21);
+  response.render('invoices21', { layout: 'index', invoices21: invoices21, show: true });
+})
+
+// SELECT billing_country, COUNT(*) FROM invoices GROUP BY billing_country ORDER BY COUNT(*) DESC LIMIT 5;
+router.get('/invoices22', async (request, response) => {
+  let invoices22 = await db.select('billing_country').count('*').from('invoices').groupBy('billing_country').orderBy('COUNT(*)', 'DESC').limit(5);
+  console.log(invoices22);
+  response.render('invoices22', { layout: 'index', invoices22: invoices22, show: true });
+})
+
+// SELECT billing_country, SUM(total) FROM invoices GROUP BY billing_country ORDER BY SUM(total) DESC LIMIT 5;
+router.get('/invoices23', async (request, response) => {
+  let invoices23 = await db.select('billing_country').sum('total').from('invoices').groupBy('billing_country').orderBy('SUM(total)', 'DESC').limit(5);
+  console.log(invoices23);
+  response.render('invoices23', { layout: 'index', invoices23: invoices23, show: true });
+})
+
+// SELECT billing_country, AVG(total) FROM invoices GROUP BY billing_country ORDER BY AVG(total) DESC LIMIT 5;
+router.get('/invoices24', async (request, response) => {
+  let invoices24 = await db.select('billing_country').avg('total').from('invoices').groupBy('billing_country').orderBy('AVG(total)', 'DESC').limit(5);
+  console.log(invoices24);
+  response.render('invoices24', { layout: 'index', invoices24: invoices24, show: true });
+})
+
 app.listen(port, () => console.log(`App listening to port ${port}`));

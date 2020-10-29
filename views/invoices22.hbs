@@ -1,0 +1,9 @@
+<h2>A list of the top 5 countries by number of invoices</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices22}}
+      <li class={{this.id}}>{{this.billing_country}}</li>
+      <li class={{this.id}}>{{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

@@ -1,0 +1,10 @@
+<h2>The number of invoices and the invoice total from California</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices19}}
+      <li class={{this.id}}>{{this.billing_state}}</li>
+      <li class={{this.id}}>Total {{this.count}}</li>
+      <li class={{this.id}}>Total {{this.sum}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

@@ -1,0 +1,10 @@
+<h2>The count, total, and average of invoice totals from California</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices20}}
+      <li class={{this.id}}>{{this.billing_state}}</li>
+      <li class={{this.id}}>{{this.count(total)}}</li>
+      <li class={{this.id}}>{{this.AVG(total)}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

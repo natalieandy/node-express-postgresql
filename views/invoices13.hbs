@@ -1,0 +1,9 @@
+<h2>The billing addresses of the 5 most valuable invoices from Mountain View CA</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices13}}
+      <li class={{this.id}}>{{this.billing_address}}</li>
+      <li class={{this.id}}>Total {{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

@@ -1,0 +1,10 @@
+<h2>A list of the 10 most valuable invoices made before January 1st, 2010</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices14}}
+      <li class={{this.id}}>{{this.id}}</li>
+      <li class={{this.id}}>{{this.invoice_date}}</li>
+      <li class={{this.id}}>Total {{this.total}}</li>
+    {{/each}}
+  {{/if}}
+</ul>

@@ -1,0 +1,9 @@
+<h2>A list of the top 5 countries by average invoice size</h2>
+<ul>
+  {{#if show}}
+    {{#each invoices24}}
+      <li class={{this.id}}>{{this.billing_country}}</li>
+      <li class={{this.id}}>Total {{this.avg('total')}}</li>
+    {{/each}}
+  {{/if}}
+</ul>
